@@ -2,7 +2,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/kaoheng1515/Huawei-OLT-VSolution-Config?style=flat)
 ![ViewCount](https://views.whatilearened.today/views/github/kaoheng1515/Huawei-OLT-VSolution-Config.svg?cache=remove)
 
-# Huawei OLT + V-Solution ONU Configuration Repository  
+# Huawei OLT ONU Configuration
 **Cambodia ISP Standard Configuration (2025 Updated)**  
 Tested on: MA5600T, MA5680T, MA5800X2/X7/X15/X17 + V-SOL OLT GPON ONUs  
 
@@ -95,4 +95,27 @@ display ont autofind all                    # Show discovered ONUs
 interface gpon 0/1/0
  ont add 0 sn-auth 56534F4C12345678 password 12345678 omcc no-onu-profile line-profile-id 10 srv-profile-id 10 desc "Customer Name"
  ont confirm 0 sn-auth 56534F4C12345678 password 12345678
+```
+
+### 12. Set Native VLAN on ONU (Management VLAN, e.g., 4000) 
+```bash
+interface gpon 0/1/0
+ ont port native-vlan 0 eth 1 vlan 4000     # Port 1 for management
+```
+
+### 13. Create Service-Port (Internet VLAN, e.g., VLAN 100)
+```bash
+interface gpon 0/1/0
+vlan 100 smart
+service-port vlan 100 gpon 0/1/0 ont 0 gemport 1 multi-service user-vlan 100 tag-transform transparent
+```
+If customer uses untagged:
+```bash
+interface gpon 0/1/0
+vlan 100 smart
+service-port vlan 100 gpon 0/1/0 ont 0 gemport 1 multi-service user-vlan untagged tag-transform translate
+```
+### 14. Save Configuration
+```bash
+save
 ```
