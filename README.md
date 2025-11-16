@@ -115,17 +115,15 @@ interface gpon 0/1                         # Example: frame 0 / slot 1
 ```
 Verify:
 ```bash
-display ont info 0 0 0
+display ont info 0 1 0
 ```
 
 ### 11. Discover & auto find ONU and add
 Assuming ONU is from V-Solution vendor. Discover and activate ONUs.
-Discover ONUs:
-Verify:
 ```bash
 display ont autofind all
 ```
-Activate a specific ONU (e.g., ONU ID 0 on port 0):
+Activate a specific ONU (ONU ID 0 on port 0):
 ```bash
 # Example output: SN: 56534F4C12345678 (V-SOL)
 # Add ONU
@@ -134,14 +132,14 @@ interface gpon 0/1/0
  ont confirm 0 sn-auth 56534F4C12345678 password 12345678
  or 
  ont add 0 0 sn-auth "ONU-SERIAL-NUMBER" ont-lineprofile-id 10 ont-srvprofile-id 10 desc "V-Solution ONU"
- ont confirm 0 0 0
+ ont confirm 0 1 0
 ```
 Verify:
 ```bash
-display ont info 0 0 0
+display ont info 0 1 0
 ```
 
-### 12. Set Native VLAN on ONU (Management VLAN, e.g., 4000) 
+### 12. Set Native VLAN on ONU (Management VLAN 4000) 
 ```bash
 interface gpon 0/1/0
  ont port native-vlan 0 eth 1 vlan 4000     # Port 1 for management
@@ -151,7 +149,7 @@ Verify:
 display ont port vlan 0 1 0 eth 1
 ```
 
-### 13. Create Service-Port (Internet VLAN, e.g., VLAN 100)
+### 13. Create Service-Port (Internet VLAN 100)
 ```bash
 interface gpon 0/1/0
 vlan 100 smart
@@ -170,7 +168,7 @@ display service-port vlan 100
 
 ### 4. Troubleshooting Commands on ONU (Add Modify Delete Display)
 Common commands for ONU management:
-**Display ONU info:**
+- **Display ONU info:**
 ```bash
 display service-port vlan 100
 ```
