@@ -8,25 +8,25 @@ Tested on: MA5600T, MA5680T, MA5800X2/X7/X15/X17 + V-SOL OLT GPON ONUs
 
 ---
 
-## 1. Login to OLT
+### 1. Login to OLT
 ```bash
 Telnet 10.11.104.2
 Username: admin
 Password: admin123   (or admin / admin@123 depending on version)
 ```
-** After login, enter super user mode:**
+After login, enter super user mode
 
-## 2. Confirm and Activate Board
+### 2. Confirm and Activate Board
 ```bash
 enable
 config
 ```
-## 3. Set Active/Standby Load-Sharing Mode
+### 3. Set Active/Standby Load-Sharing Mode
 ```bash
 active-standby load-sharing enable
 ```
 
-## Add Management IP
+### Add Management IP
 Example: VLAN 4000 for management
 ```bash
 interface vlanif 4000
