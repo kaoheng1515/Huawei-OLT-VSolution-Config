@@ -166,15 +166,48 @@ Verify:
 display service-port vlan 100
 ```
 
-### 4. Troubleshooting Commands on ONU (Add Modify Delete Display)
+### 14. Troubleshooting Commands on ONU (Add Modify Delete Display)
 Common commands for ONU management:
 - **Display ONU info:**
 ```bash
-display service-port vlan 100
+display ont info 0 0 0  // Frame/Slot/Port/ONU-ID
+display ont optical-info 0 0 0
+display ont version 0 0 0
 ```
 
-### 1. Save Configuration
+- **Add ONU:**
 ```bash
+ont add 0 0 sn-auth "SERIAL" ont-lineprofile-id 10 ont-srvprofile-id 10
+```
+
+- **Modify ONU:**
+```bash
+ont modify 0 0 0 desc "New Description"
+ont port attribute 0 0 0 eth 1 adminstate enable
+```
+
+- **Delete ONU:**
+```bash
+ont delete 0 0 0
+```
+
+- **Reset ONU:**
+```bash
+ont reset 0 0 0
+```
+
+- **Other useful commands:**
+```bash
+display ont failed-register  // Check registration failures
+display alarm active  // Active alarms
+display log all  // Logs
+ping host 192.168.1.100  // Test connectivity
+```
+
+
+### 15. Save Configuration
+```bash
+commit
 save
 ```
 
